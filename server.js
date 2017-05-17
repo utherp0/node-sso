@@ -12,16 +12,16 @@ var session = require('express-session');
 var keycloak = require('keycloak-connect');
 
 var memoryStore = new session.MemoryStore();
-var keycloak = new keycloak( { store : memoryStore });
+var keycloakInstance = new keycloak( { store : memoryStore });
 
 // Initiate the middleware keycloak integration
-app.use( keycloak.middleware() );
+app.use( keycloakInstance.middleware() );
 
 app.engine('html', require('ejs').renderFile);
 
 app.use( '/scripts', express.static('scripts'));
 
-app.get('/', keycloak.protect(), function (req, res) {
+app.get('/', keycloakInstance.protect(), function (req, res) {
   res.render('rhsso_test.html');
 });
 
@@ -29,7 +29,7 @@ app.get('/js', function (req, res) {
   res.render('rhsso_js.html');
 });
 
-app.get('/page1.html', keycloak.protect(), function (req,res ) {
+app.get('/page1.html', keycloakInstance.protect(), function (req,res ) {
   res.render('page1.html');
 });
 
