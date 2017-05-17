@@ -9,11 +9,11 @@ var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 // RHSSO Integration
 var session = require('express-session');
-var keycloak = require('keycloak-connect');
+var Keycloak = require('keycloak-connect');
 
 var memoryStore = new session.MemoryStore();
 //var keycloakInstance = new keycloak( { store : memoryStore });
-var keycloakInstance = new keycloak();
+var keycloakInstance = new Keycloak( { scope : "session"});
 
 // Initiate the middleware keycloak integration
 app.use( keycloakInstance.middleware() );
