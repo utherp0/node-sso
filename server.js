@@ -23,6 +23,8 @@ app.engine('html', require('ejs').renderFile);
 app.use( '/scripts', express.static('scripts'));
 
 app.get('/', keycloakInstance.protect(), function (req, res) {
+  console.log("In the render method for root context");
+  console.log( "token:" + req.session['keycloak-token']);
   res.render('rhsso_test.html');
 });
 
