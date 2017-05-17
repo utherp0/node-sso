@@ -4,6 +4,8 @@ var fs      = require('fs');
 var app     = express();
 var eps     = require('ejs');
 
+var port = 3000;
+
 // RHSSO Integration
 var session = require('express-session');
 var keycloak = require('keycloak-connect');

@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
       "express": "*",
+      "express-session": "*",
       "mongodb": "*",
       "ejs": "*",
       "keycloak-connect" : "3.1.0"
