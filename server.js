@@ -4,7 +4,8 @@ var fs      = require('fs');
 var app     = express();
 var eps     = require('ejs');
 
-var port = 3000;
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 
 // RHSSO Integration
 var session = require('express-session');
