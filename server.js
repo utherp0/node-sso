@@ -4,11 +4,21 @@ var fs      = require('fs');
 var app     = express();
 var eps     = require('ejs');
 
+// RHSSO Integration
+var session = require('express-session');
+var keycloak = require('keycloak-connect');
+
+var memoryStore = new session.MemoryStore();
+var keycloak = new keycloak( { store : memoryStore });
+
+// Initiate the middleware keycloak integration
+app.use( keycloak.middleware() );
+
 app.engine('html', require('ejs').renderFile);
 
 app.use( '/scripts', express.static('scripts'));
 
-app.get('/', function (req, res) {
+app.get('/', keycloak.protect(), function (req, res) {
   res.render('rhsso_test.html');
 });
 
@@ -16,7 +26,7 @@ app.get('/js', function (req, res) {
   res.render('rhsso_js.html');
 });
 
-app.get('/page1.html', function (req,res ) {
+app.get('/page1.html', keycloak.protect(), function (req,res ) {
   res.render('page1.html');
 });
 
