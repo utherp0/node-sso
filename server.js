@@ -12,8 +12,8 @@ var session = require('express-session');
 var Keycloak = require('keycloak-connect');
 
 var memoryStore = new session.MemoryStore();
-//var keycloakInstance = new keycloak( { store : memoryStore });
-var keycloakInstance = new Keycloak( { scope : "session"});
+var keycloakInstance = new keycloak( { store : memoryStore });
+//var keycloakInstance = new Keycloak( { scope : "session"});
 
 // Initiate the middleware keycloak integration
 app.use( keycloakInstance.middleware() );
