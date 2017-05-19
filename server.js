@@ -14,7 +14,7 @@ var Keycloak = require('keycloak-connect');
 var memoryStore = new session.MemoryStore();
 
 app.use(session({
-  secret: "ihatenode",
+  secret: "justaphrase",
   resave: false,
   saveUninitialized: true,
   store: memoryStore
